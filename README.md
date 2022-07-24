@@ -5,4 +5,5 @@
 
 この書籍では、Googleさんが提供している、ブラウザ上で機械学習を扱える仕組み「[Teachable Machine](https://teachablemachine.withgoogle.com/)」を扱っています。
 
-（今後、情報を追記していく予定です）
+（書籍の発売開始後、情報を追記していく予定です）
+（書籍に掲載されているプログラムのサンプルファイルは、このリポジトリではなく、[工学社さんの「サポート情報」サイト](https://www.kohgakusha.co.jp/suppor_u.html)に置かれる予定です）
