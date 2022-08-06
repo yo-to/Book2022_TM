@@ -13,7 +13,7 @@
 
 ## 第5章の Column関連の補足
 書籍の第5章の複数の Column のうち、P186 の「Teachable Machine とデバイスを連携させる話」と P187 の「TensorFlow.js を使った仕組みの中のオススメである "MediaPipe" の話」の補足情報です。  
-詳細は[こちらのリンク先](./pages/chapter5_column.md)をご覧ください。
+詳細は[こちらのリンク先（第5章の Column関連の補足のページ）](./pages/chapter5_column.md)をご覧ください。
 
 ## その他
 ### 著者情報
