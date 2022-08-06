@@ -3,7 +3,7 @@
 書籍の P186 で、Teachable Machine とデバイスを連携させる際に活用できる API や通信の仕組みなどについて記載しました。  
 書籍内ではキーワードに触れたのみだったため、一部のものについて情報を補足します。
 
-### ブラウザで利用可能なデバイス系の API
+### ブラウザで利用可能なデバイス系API
 対応ブラウザが限定される API になりますが（※ 基本的に Chrome系のブラウザとなる）、書籍内でも書いていた以下の API を利用することで、Bluetooth による無線接続や有線でのシリアル通信を用いて、外部デバイスとの連携を実現できます。
 
 - Web Bluetooth API
@@ -16,6 +16,51 @@
 
 - [Qiita で「web bluetooth api」で検索（著者指定：youtoy）](https://qiita.com/search?sort=&q=web+bluetooth+api+user%3Ayoutoy)
 - [Qiita で「web serial api」で検索（著者指定：youtoy）](https://qiita.com/search?q=web+serial+api+user%3Ayoutoy)
+
+### リアルタイム通信を活用する
+書籍内でも書いていた以下の通信の仕組みを使うことで、外部のデバイスやアプリなどとの連携を行うことができます。
+
+- WebSocket
+- MQTT
+
+ブラウザ上で動くプログラムで利用する場合の情報を少し補足します。
+
+#### WebSocket を使う
+ブラウザ上で動くプログラムで WebSocket を使って、外部のデバイスやプログラムなどとの連携を行う場合、以下の構成となります。
+
+- ブラウザ上で動くプログラム
+- WebSocketサーバー
+- 外部のデバイスやプログラムなど
+
+また、実装などを行うにあたっての情報を補足します。  
+例えば、JavaScriptメインでの構成例で、ローカルで試す場合は以下のような構成で実装できます。
+
+- ブラウザ上で動くプログラム
+   - WebSocket はメジャーな各種ブラウザで API として実装されているため、外部ライブラリなどを利用することなく実装可能です。WebSocket について、[MDN に記載されたクライアントの実装の情報へのリンクはこちら](https://developer.mozilla.org/ja/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications)です。
+- WebSocketサーバー
+   - ローカルで WebSocketサーバーを立てる場合、なんらかのライブラリ等を利用するのが便利です。JavaScript に限定した場合でもいくつか選択肢がありますが、有名どころの 1つに Node.js で利用可能な[「ws」](https://github.com/websockets/ws)があります。
+- 外部のデバイスやプログラムなど
+   - 利用するデバイス・言語に対応した WebSocketライブラリを利用する形になります。
+
+#### MQTT
+ブラウザ上で動くプログラムで MQTT を使って、外部のデバイスやプログラムなどとの連携を行う場合、以下の構成となります。
+
+- ブラウザ上で動くプログラム
+- MQTTブローカー（仲介役になるサーバー）
+- 外部のデバイスやプログラムなど
+
+基本的な構成は WebSocket の場合と同じで、以下に実装などを行うにあたっての情報を補足します。  
+WebSocket の場合と同様に、JavaScriptメインでの構成例で、ローカルで試す場合の構成を記載します。
+
+- ブラウザ上で動くプログラム
+   - 上記の WebSocket の場合と異なり、何らかライブラリを利用した実装が必要になります。筆者は有名どころの[「MQTT.js」](https://github.com/mqttjs/MQTT.js)を良く利用しています。
+- MQTTブローカー（仲介役になるサーバー）
+   - ローカルで MQTTブローカーを準備する場合、ライブラリ等を利用して実装する方法が 1つあり、上でも出てきた[「MQTT.js の Node.js用パッケージ」](https://www.npmjs.com/package/mqtt)を利用する方法があります。筆者は、MQTT.js を使って実装するパターンも試したことはありますが、[「shiftr.io が提供しているデスクトップアプリ」](https://www.shiftr.io/desktop)が便利で、各種OS にも対応しているので、ローカルで使う場合はこちらをよく使っています。
+- 外部のデバイスやプログラムなど
+   - 利用するデバイス・言語に対応した MQTTライブラリを利用する形になります。
+
+余談ですが、筆者が MQTT を利用した試作をする際に、クラウド上に MQTTブローカーを準備することもあります。その場合に、クラウド上で利用可能で無償枠もあるサービスを利用しており、[「shiftr.io が提供しているクラウドサービス」](https://www.shiftr.io/cloud)や[「Beebotte というサービス」](https://beebotte.com/)をよく使っています。
+
 ## TensorFlow.js を使った仕組みの中のオススメの 1つ：「MediaPipe」
 書籍の P187 で、TensorFlow.js が活用されている仕組みという点が Teachable Machine と共通である、Google さんが提供している「MediaPipe」について記載しました。  
 書籍内では非常に簡単な説明を記載していただけだったため、情報を補足します。
